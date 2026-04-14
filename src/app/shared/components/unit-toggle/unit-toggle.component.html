@@ -1,0 +1,11 @@
+<div class="unit-toggle">
+  <button
+    class="toggle-btn"
+    [class.active]="store.currentUnit() === 'metric'"
+    (click)="toggleUnit()"
+    type="button">
+    <span class="unit" [class.selected]="store.currentUnit() === 'metric'">°C</span>
+    <span class="separator">|</span>
+    <span class="unit" [class.selected]="store.currentUnit() === 'imperial'">°F</span>
+  </button>
+</div>

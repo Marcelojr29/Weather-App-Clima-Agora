@@ -1,0 +1,45 @@
+<div class="home-container">
+  <header class="header">
+    <div class="header-content">
+      <h1 class="app-title">
+        <lucide-icon [img]="SunIcon" [size]="32"></lucide-icon>
+        Weather App - Clima Agora
+      </h1>
+      <app-unit-toggle />
+    </div>
+  </header>
+
+  <section class="search-section">
+    <app-search-bar />
+  </section>
+
+  <div class="main-content">
+    <div class="weather-section">
+      <app-current-weather />
+    </div>
+
+    <aside class="sidebar">
+      <app-history />
+    </aside>
+  </div>
+
+  <section class="forecast-section">
+    <h2 class="section-title">Previsão para os próximos dias</h2>
+
+    @if (store.dailyForecast() && store.dailyForecast().length > 0) {
+      <div class="forecast-grid">
+        @for (day of store.dailyForecast(); track trackByDate($index, day)) {
+          <app-forecast-card
+            [forecast]="day"
+            [unit]="store.currentUnit()"
+          />
+        }
+      </div>
+    } @else {
+      <div class="forecast-loading">
+        <div class="spinner"></div>
+        <p>Carregando previsão...</p>
+      </div>
+    }
+  </section>
+</div>

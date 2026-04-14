@@ -1,0 +1,19 @@
+<div class="history-container">
+  <h3 class="history-title">Buscas Recentes</h3>
+
+  @if (store.historyList() && store.historyList().length > 0) {
+    <div class="history-list">
+      @for (city of store.historyList(); track trackByCity($index, city)) {
+        <button
+          class="history-item"
+          (click)="selectCity(city)"
+          type="button">
+          <lucide-icon [img]="MapPinIcon" [size]="18"></lucide-icon>
+          <span>{{ city }}</span>
+        </button>
+      }
+    </div>
+  } @else {
+    <p class="history-empty">Nenhuma busca recente</p>
+  }
+</div>

@@ -1,0 +1,65 @@
+@if (store.currentWeather(); as weather) {
+  <div class="current-weather">
+    <div class="weather-header">
+      <h2 class="city-name">
+        {{ weather.cityName }}@if (weather.admin1) {, {{ weather.admin1 }}}, {{ weather.country }}
+      </h2>
+      <p class="weather-description">{{ getWeatherInfo(weather.current.weather_code).description }}</p>
+    </div>
+
+    <div class="weather-main">
+      <div class="weather-icon-large" [class]="'weather-' + getWeatherCategory(weather.current.weather_code)">
+        <lucide-icon [img]="getWeatherInfo(weather.current.weather_code).icon" [size]="120"></lucide-icon>
+      </div>
+      <div class="temperature">
+        {{ weather.current.temperature_2m | temperature: store.currentUnit(): 0 }}
+      </div>
+    </div>
+
+    <div class="weather-details">
+      <div class="detail-item">
+        <lucide-icon [img]="ThermometerIcon" [size]="24"></lucide-icon>
+        <div class="detail-content">
+          <span class="detail-label">Sensação térmica</span>
+          <span class="detail-value">{{ weather.current.apparent_temperature | temperature: store.currentUnit(): 0 }}</span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <lucide-icon [img]="DropletIcon" [size]="24"></lucide-icon>
+        <div class="detail-content">
+          <span class="detail-label">Umidade</span>
+          <span class="detail-value">{{ weather.current.relative_humidity_2m }}%</span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <lucide-icon [img]="WindIcon" [size]="24"></lucide-icon>
+        <div class="detail-content">
+          <span class="detail-label">Vento</span>
+          <span class="detail-value">{{ weather.current.wind_speed_10m }} km/h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  @if (store.error()) {
+    <div class="error-container">
+      <div class="error-icon">
+        <lucide-icon [img]="AlertCircleIcon" [size]="64"></lucide-icon>
+      </div>
+      <h3 class="error-title">Ops! Algo deu errado</h3>
+      <p class="error-message">{{ store.error() }}</p>
+
+      <button class="retry-btn" (click)="store.setCity('Manaus')">
+        <lucide-icon [img]="RotateCwIcon" [size]="20"></lucide-icon>
+        Tentar Novamente
+      </button>
+    </div>
+  } @else if (store.loading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Carregando dados do clima...</p>
+    </div>
+  }
+}

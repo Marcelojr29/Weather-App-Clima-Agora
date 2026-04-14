@@ -1,0 +1,79 @@
+.history-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  .history-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 16px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      color: white;
+      text-align: left;
+
+      svg {
+        flex-shrink: 0;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      span {
+        flex: 1;
+        font-weight: 500;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateX(3px) scale(0.98);
+      }
+    }
+  }
+
+  .history-empty {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    padding: 20px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 20px;
+
+    .history-title {
+      font-size: 18px;
+    }
+
+    .history-list .history-item {
+      padding: 12px 16px;
+      font-size: 15px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="forecast-card">
+  <div class="forecast-date">
+    <div class="day-name">{{ getDayName(forecast.date) }}</div>
+    <div class="date">{{ getFormattedDate(forecast.date) }}</div>
+  </div>
+
+  <div class="forecast-icon" [class]="'weather-' + getWeatherCategory(forecast.weatherCode)">
+    <lucide-icon [img]="forecast.icon" [size]="64"></lucide-icon>
+  </div>
+
+  <div class="forecast-description">
+    {{ forecast.description }}
+  </div>
+
+  <div class="forecast-temps">
+    <div class="temp-max">
+      <span class="label">Máx</span>
+      <span class="value">{{ forecast.tempMax | temperature: unit: 0 }}</span>
+    </div>
+    <div class="temp-min">
+      <span class="label">Mín</span>
+      <span class="value">{{ forecast.tempMin | temperature: unit: 0 }}</span>
+    </div>
+  </div>
+</div>

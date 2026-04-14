@@ -1,0 +1,161 @@
+.home-container {
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .header {
+    margin-bottom: 30px;
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .app-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 36px;
+        font-weight: 800;
+        color: white;
+        margin: 0;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+
+        svg {
+          filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+        }
+      }
+    }
+  }
+
+  .search-section {
+    margin-bottom: 30px;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 24px;
+    margin-bottom: 30px;
+
+    .weather-section {
+      min-width: 0; // Previne overflow em grid
+    }
+
+    .sidebar {
+      min-width: 0;
+    }
+  }
+
+  .forecast-section {
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      margin: 0 0 20px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .forecast-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: white;
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      p {
+        margin-top: 16px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsividade
+@media (max-width: 1024px) {
+  .home-container {
+    .main-content {
+      grid-template-columns: 1fr;
+
+      .sidebar {
+        order: -1; // Coloca histórico antes do clima em mobile
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+
+    .header {
+      margin-bottom: 20px;
+
+      .header-content {
+        .app-title {
+          font-size: 28px;
+
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+
+    .forecast-section {
+      .section-title {
+        font-size: 20px;
+      }
+
+      .forecast-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    .header {
+      .header-content {
+        .app-title {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .forecast-section {
+      .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
