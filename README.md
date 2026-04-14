@@ -156,16 +156,11 @@ src/
 │   │   ├── components/
 │   │   │   └── unit-toggle/
 │   │   └── pipes/
-│   │       ├── temperature.pipe.ts
-│   │       └── weather-icon.pipe.ts
+│   │       └── temperature.pipe.ts
 │   │
 │   ├── app.component.ts
 │   ├── app.config.ts
 │   └── app.routes.ts
-│
-├── environments/                # Configurações de ambiente
-│   ├── environment.ts
-│   └── environment.development.ts
 │
 └── styles.scss                  # Estilos globais
 ```
